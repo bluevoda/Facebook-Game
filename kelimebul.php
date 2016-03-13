@@ -6,14 +6,13 @@ $wantedLetters=str_split(rtrim($letters));
 if(!file_exists("words.txt")){
 	die();
 }
-$myfile = fopen("words.txt", "r") or die("Unable to open file!");
-while(!feof($myfile)) {
-	$str = strtolower(fgets($myfile));
-	$line = str_split(rtrim($str));
-	if (count(array_intersect($line, $wantedLetters)) == count($line)) {
-				echo $str . "<br />";
+$fileReader = fopen("words.txt", "r") or die("Unable to open file!");
+while(!feof($fileReader)) {
+	$lineString = strtolower(fgets($fileReader));
+	$parsedLine = str_split(rtrim($lineString));
+	if (count(array_intersect($parsedLine, $wantedLetters)) == count($parsedLine)) {
+				echo $lineString . "<br />";
 	}
 }
 fclose($myfile);
-ob_end_flush();
 ?>
